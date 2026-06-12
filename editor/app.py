@@ -88,11 +88,14 @@ def preview_url(relpath: str) -> str:
     return PREVIEW_BASE + rel + "/"
 
 
-def run_git(args: list[str]) -> tuple[int, str]:
-    proc = subprocess.run(
-        ["git", *args], cwd=REPO_ROOT, capture_output=True, text=True
-    )
+def run(cmd: list[str]) -> tuple[int, str]:
+    proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True)
     return proc.returncode, (proc.stdout + proc.stderr).strip()
+
+
+# The deploy workflow can't be pushed until the gh token has the 'workflow'
+# scope, so keep it out of source pushes for now.
+SKIP_FROM_PUSH = ".github/workflows/deploy.yml"
 
 
 # ---- routes ---------------------------------------------------------------
@@ -166,15 +169,28 @@ def save_calendar():
 @app.route("/deploy", methods=["POST"])
 def deploy():
     message = request.get_json(force=True).get("message", "").strip() or "Update wiki"
-    code, add_out = run_git(["add", "-A"])
-    if code != 0:
-        return jsonify(ok=False, log=add_out), 500
-    code, commit_out = run_git(["commit", "-m", message])
-    if code != 0 and "nothing to commit" in commit_out:
-        return jsonify(ok=False, log="Nothing to commit."), 200
-    code, push_out = run_git(["push"])
-    ok = code == 0
-    return jsonify(ok=ok, log=f"{commit_out}\n\n{push_out}".strip())
+    logs = []
+
+    # 1. Publish: build the site and push it to the gh-pages branch.
+    code, out = run(
+        [sys.executable, "-m", "mkdocs", "gh-deploy", "--force", "--message", message]
+    )
+    published = code == 0
+    logs.append("$ mkdocs gh-deploy\n" + out)
+
+    # 2. Back up the source to main (best effort; excludes the workflow file).
+    run(["git", "add", "-A"])
+    run(["git", "reset", "-q", "--", SKIP_FROM_PUSH])
+    code_c, out_c = run(["git", "commit", "-m", message])
+    if code_c == 0:
+        _, out_p = run(["git", "push"])
+        logs.append("$ git push (source → main)\n" + out_p)
+    elif "nothing to commit" in out_c:
+        logs.append("Source already up to date on main.")
+    else:
+        logs.append("$ git commit\n" + out_c)
+
+    return jsonify(ok=published, log="\n\n".join(logs))
 
 
 # ---- mkdocs preview subprocess -------------------------------------------

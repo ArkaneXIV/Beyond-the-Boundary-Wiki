@@ -53,7 +53,7 @@ lets you:
 - create new pages (category + title + tags),
 - edit any page or the calendar JSON (Ctrl/Cmd+S to save),
 - preview live in the right-hand panel,
-- **Commit & Push** to deploy.
+- **Deploy** — builds and publishes to `gh-pages` (and backs up source to `main`).
 
 Localhost only — it has no authentication; do not expose it to a network.
 
@@ -102,11 +102,29 @@ show a popover on hover/focus with a link to the related record.
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site
-and publishes it to the `gh-pages` branch via `mkdocs gh-deploy`.
+The site is published to the `gh-pages` branch and served by GitHub Pages
+(Settings → Pages → Source: branch `gh-pages` / root — already configured).
 
-**One-time GitHub setup:** Settings → Pages → Build and deployment →
-Source: *Deploy from a branch* → Branch: `gh-pages` / `root`.
+Deploy any time with:
+
+```bash
+mkdocs gh-deploy --force
+```
+
+…or click **Deploy** in the editor GUI, which does the same and also commits the
+source to `main`.
+
+**Optional — push-to-deploy via GitHub Actions.** The workflow at
+`.github/workflows/deploy.yml` (kept on disk, not yet pushed) makes every push to
+`main` auto-deploy. To enable it, grant your `gh` token the `workflow` scope once,
+then push it:
+
+```bash
+gh auth refresh -h github.com -s workflow
+git add .github/workflows/deploy.yml
+git commit -m "Add deploy workflow"
+git push
+```
 
 Live site: <https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/>
 

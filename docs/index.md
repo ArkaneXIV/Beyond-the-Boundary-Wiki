@@ -4,7 +4,7 @@ hide:
   - toc
 ---
 
-# BTB WIKI
+# Beyond the Boundary Wiki
 
 !!! system "SYSTEM NOTICE"
     Welcome, user. This archive catalogues the world, its inhabitants, and its
