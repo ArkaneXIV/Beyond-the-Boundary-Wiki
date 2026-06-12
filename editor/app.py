@@ -29,8 +29,10 @@ MKDOCS_PORT = 8000
 CATEGORIES = {
     "characters": "Characters",
     "locations": "Locations",
-    "factions-lore": "Factions & Lore",
-    "items-bestiary": "Items & Bestiary",
+    "factions": "Factions",
+    "lore": "Lore",
+    "items": "Items",
+    "bestiary": "Bestiary",
 }
 
 app = Flask(__name__)

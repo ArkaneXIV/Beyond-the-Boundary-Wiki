@@ -63,7 +63,7 @@ See the in-wiki **Style Guide** (`docs/style-guide.md`) for the full feature
 reference. Content lives under `docs/`:
 
 ```
-docs/characters/  docs/locations/  docs/factions-lore/  docs/items-bestiary/
+docs/characters/  docs/locations/  docs/factions/  docs/lore/  docs/items/  docs/bestiary/
 ```
 
 Each page may start with front matter for tags:
@@ -91,7 +91,7 @@ Schema (months/days/weekdays/eras are all arbitrary; `month`/`day` are 1-based):
   "events": [
     { "era": "SE", "year": 1, "month": 1, "day": 1,
       "title": "The First Scenario", "type": "scenario",
-      "link": "../items-bestiary/example-scenario/",
+      "link": "../bestiary/example-scenario/",
       "desc": "The System awakens." }
   ]
 }

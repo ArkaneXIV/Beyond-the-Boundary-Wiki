@@ -10,7 +10,7 @@ tags:
     | Field | Value |
     |-------|-------|
     | **Status** | Alive |
-    | **Affiliation** | [Example Faction](../factions-lore/example-faction.md) |
+    | **Affiliation** | [Example Faction](../factions/example-faction.md) |
     | **Origin** | [Example Location](../locations/example-location.md) |
 
 ## Overview
