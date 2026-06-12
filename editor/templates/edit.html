@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ relpath }} — Editor{% endblock %}
+{% block body %}
+<div class="toolbar">
+  <span class="name">{{ relpath }}</span>
+  <button class="btn" onclick="save()">Save</button>
+  <span id="status" class="status"></span>
+  <span class="spacer"></span>
+</div>
+
+<div class="split">
+  <textarea id="content" spellcheck="false">{{ content }}</textarea>
+  <div class="preview"><iframe id="preview" src="{{ preview }}"></iframe></div>
+</div>
+
+<script>
+const RELPATH = {{ relpath | tojson }};
+async function save() {
+  const status = document.getElementById('status');
+  status.textContent = 'Saving…'; status.className = 'status';
+  const res = await fetch('{{ url_for("save") }}', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({relpath: RELPATH, content: document.getElementById('content').value})
+  });
+  const data = await res.json();
+  if (data.ok) {
+    status.textContent = 'Saved ✓'; status.className = 'status ok';
+    // mkdocs live-reload refreshes the iframe automatically; nudge it too.
+    setTimeout(() => { document.getElementById('preview').contentWindow.location.reload(); }, 600);
+  } else {
+    status.textContent = 'Error ✕'; status.className = 'status err';
+  }
+}
+// Ctrl/Cmd+S to save
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); save(); }
+});
+</script>
+{% endblock %}

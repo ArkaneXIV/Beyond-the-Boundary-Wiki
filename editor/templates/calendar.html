@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Calendar — Editor{% endblock %}
+{% block body %}
+<div class="toolbar">
+  <span class="name">assets/data/calendar.json</span>
+  <button class="btn" onclick="save()">Save</button>
+  <span id="status" class="status"></span>
+</div>
+
+<div class="split">
+  <textarea id="content" spellcheck="false">{{ content }}</textarea>
+  <div class="preview"><iframe id="preview" src="{{ preview }}"></iframe></div>
+</div>
+
+<script>
+async function save() {
+  const status = document.getElementById('status');
+  status.textContent = 'Saving…'; status.className = 'status';
+  const res = await fetch('{{ url_for("save_calendar") }}', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({content: document.getElementById('content').value})
+  });
+  const data = await res.json();
+  if (data.ok) {
+    status.textContent = 'Saved ✓'; status.className = 'status ok';
+    setTimeout(() => { document.getElementById('preview').contentWindow.location.reload(); }, 600);
+  } else {
+    status.textContent = data.error || 'Error ✕'; status.className = 'status err';
+  }
+}
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); save(); }
+});
+</script>
+{% endblock %}

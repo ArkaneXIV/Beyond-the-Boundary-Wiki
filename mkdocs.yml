@@ -1,0 +1,105 @@
+site_name: BTB Wiki
+site_description: Worldbuilding archive
+site_url: https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/
+repo_url: https://github.com/ArkaneXIV/Beyond-the-Boundary-Wiki
+repo_name: ArkaneXIV/Beyond-the-Boundary-Wiki
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    # Dark is the default
+    - media: "(prefers-color-scheme)"
+      scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to system preference
+  font:
+    text: Rajdhani
+    code: Share Tech Mono
+  features:
+    - navigation.sections
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - assets/stylesheets/system.css
+
+extra_javascript:
+  - assets/javascripts/calendar.js
+
+plugins:
+  - search
+  - tags
+  - glightbox
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - def_list
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Characters:
+      - characters/index.md
+      - Example Character: characters/example-character.md
+  - Locations:
+      - locations/index.md
+      - Example Location: locations/example-location.md
+  - Factions & Lore:
+      - factions-lore/index.md
+      - Example Faction: factions-lore/example-faction.md
+  - Items & Bestiary:
+      - items-bestiary/index.md
+      - Example Scenario: items-bestiary/example-scenario.md
+  - Calendar: calendar.md
+  - Style Guide: style-guide.md
+  - Tags: tags.md

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}BTB Wiki Editor{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='editor.css') }}">
+</head>
+<body>
+  <header class="bar">
+    <span class="logo">BTB WIKI // EDITOR</span>
+    <span class="spacer"></span>
+    <a href="{{ url_for('index') }}">Pages</a>
+    <a href="{{ url_for('calendar') }}">Calendar</a>
+    <a href="{{ preview_root }}" target="_blank" rel="noopener">Live site ↗</a>
+  </header>
+  <main>{% block body %}{% endblock %}</main>
+</body>
+</html>

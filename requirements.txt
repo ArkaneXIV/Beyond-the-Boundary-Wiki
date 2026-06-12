@@ -1,0 +1,4 @@
+mkdocs-material>=9.5
+mkdocs-glightbox>=0.4
+pymdown-extensions>=10.7
+flask>=3.0

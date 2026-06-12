@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>&lt; Pages &gt;</h1>
+
+<div class="panel">
+  <h2>New page</h2>
+  <form class="grid" method="post" action="{{ url_for('new_page') }}">
+    <label>Category
+      <select name="category">
+        {% for slug, label in categories.items() %}
+        <option value="{{ slug }}">{{ label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Title <input name="title" required placeholder="Example Hero"></label>
+    <label>Tags (comma-separated) <input name="tags" placeholder="character, protagonist"></label>
+    <button class="btn" type="submit">Create</button>
+  </form>
+</div>
+
+<div class="panel">
+  <h2>Edit existing</h2>
+  <ul class="pages">
+    {% for p in pages %}
+    <li><a href="{{ url_for('edit', relpath=p.path) }}">{{ p.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="panel">
+  <h2>Deploy</h2>
+  <form class="grid" onsubmit="return deploy(event)">
+    <label>Commit message <input id="msg" placeholder="Update wiki"></label>
+    <button class="btn" type="submit">Commit &amp; Push</button>
+    <span id="dstatus" class="status"></span>
+  </form>
+  <pre class="log" id="dlog" hidden></pre>
+</div>
+
+<script>
+async function deploy(e) {
+  e.preventDefault();
+  const status = document.getElementById('dstatus');
+  const log = document.getElementById('dlog');
+  status.textContent = 'Deploying…'; status.className = 'status';
+  const res = await fetch('{{ url_for("deploy") }}', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({message: document.getElementById('msg').value})
+  });
+  const data = await res.json();
+  status.textContent = data.ok ? 'Deployed ✓' : 'Failed ✕';
+  status.className = 'status ' + (data.ok ? 'ok' : 'err');
+  log.hidden = false; log.textContent = data.log || '';
+  return false;
+}
+</script>
+{% endblock %}
