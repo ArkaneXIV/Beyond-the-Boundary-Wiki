@@ -17,6 +17,14 @@
          <lastmod>2026-06-12</lastmod>
     </url>
     <url>
+         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/bestiary/</loc>
+         <lastmod>2026-06-12</lastmod>
+    </url>
+    <url>
+         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/bestiary/example-scenario/</loc>
+         <lastmod>2026-06-12</lastmod>
+    </url>
+    <url>
          <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/characters/</loc>
          <lastmod>2026-06-12</lastmod>
     </url>
@@ -25,19 +33,15 @@
          <lastmod>2026-06-12</lastmod>
     </url>
     <url>
-         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/factions-lore/</loc>
+         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/factions/</loc>
          <lastmod>2026-06-12</lastmod>
     </url>
     <url>
-         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/factions-lore/example-faction/</loc>
+         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/factions/example-faction/</loc>
          <lastmod>2026-06-12</lastmod>
     </url>
     <url>
-         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/items-bestiary/</loc>
-         <lastmod>2026-06-12</lastmod>
-    </url>
-    <url>
-         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/items-bestiary/example-scenario/</loc>
+         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/items/</loc>
          <lastmod>2026-06-12</lastmod>
     </url>
     <url>
@@ -46,6 +50,10 @@
     </url>
     <url>
          <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/locations/example-location/</loc>
+         <lastmod>2026-06-12</lastmod>
+    </url>
+    <url>
+         <loc>https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/lore/</loc>
          <lastmod>2026-06-12</lastmod>
     </url>
 </urlset>

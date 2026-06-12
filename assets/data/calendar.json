@@ -15,13 +15,13 @@
     {
       "era": "SE", "year": 1, "month": 1, "day": 1,
       "title": "The First Scenario", "type": "scenario",
-      "link": "../items-bestiary/example-scenario/",
+      "link": "../bestiary/example-scenario/",
       "desc": "<MAIN SCENARIO #1 - PROOF OF VALUE> begins. The System awakens."
     },
     {
       "era": "SE", "year": 1, "month": 2, "day": 14,
       "title": "Founding of the Faction", "type": "faction",
-      "link": "../factions-lore/example-faction/",
+      "link": "../factions/example-faction/",
       "desc": "An example faction is established."
     },
     {
