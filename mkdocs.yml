@@ -1,9 +1,6 @@
 site_name: Beyond the Boundary Wiki
 site_description: Worldbuilding archive
 site_url: https://ArkaneXIV.github.io/Beyond-the-Boundary-Wiki/
-repo_url: https://github.com/ArkaneXIV/Beyond-the-Boundary-Wiki
-repo_name: ArkaneXIV/Beyond-the-Boundary-Wiki
-edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -47,8 +44,9 @@ theme:
     - search.share
     - content.code.copy
     - toc.follow
-  icon:
-    repo: fontawesome/brands/github
+
+extra:
+  generator: false
 
 extra_css:
   - assets/stylesheets/system.css
