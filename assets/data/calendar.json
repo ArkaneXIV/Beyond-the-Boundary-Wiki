@@ -1,0 +1,34 @@
+{
+  "calendarName": "The World Calendar",
+  "weekdays": ["Sol", "Lun", "Ter", "Mer", "Jov", "Ven", "Sab"],
+  "months": [
+    { "name": "Frostwane", "days": 30 },
+    { "name": "Embertide", "days": 31 },
+    { "name": "Highsun", "days": 31 },
+    { "name": "Duskfall", "days": 30 }
+  ],
+  "eras": [
+    { "name": "Before System", "abbr": "BS", "startYear": 1 },
+    { "name": "System Era", "abbr": "SE", "startYear": 1 }
+  ],
+  "events": [
+    {
+      "era": "SE", "year": 1, "month": 1, "day": 1,
+      "title": "The First Scenario", "type": "scenario",
+      "link": "../items-bestiary/example-scenario/",
+      "desc": "<MAIN SCENARIO #1 - PROOF OF VALUE> begins. The System awakens."
+    },
+    {
+      "era": "SE", "year": 1, "month": 2, "day": 14,
+      "title": "Founding of the Faction", "type": "faction",
+      "link": "../factions-lore/example-faction/",
+      "desc": "An example faction is established."
+    },
+    {
+      "era": "BS", "year": 1, "month": 3, "day": 9,
+      "title": "Birth of a Protagonist", "type": "character",
+      "link": "../characters/example-character/",
+      "desc": "An example character is born."
+    }
+  ]
+}
