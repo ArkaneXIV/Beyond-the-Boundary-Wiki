@@ -224,8 +224,8 @@
 
 /* injected decorations: corner brackets + edge digitization */
 .sw-br { position: absolute; z-index: 4; width: 20px; height: 20px; border: 2px solid rgba(255,255,255,.95); pointer-events: none; }
-.sw-br.tr { top: 0; right: 0; border-left: 0; border-bottom: 0; }
-.sw-br.bl { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+.sw-br.tr { top: 4px; right: 4px; border-left: 0; border-bottom: 0; }
+.sw-br.bl { bottom: 4px; left: 4px; border-right: 0; border-top: 0; }
 /* ---- Spawn-in: block-corruption materialize (fires on page load/nav) ---- */
 .sw-scan { position: absolute; left: 0; right: 0; height: 3px; z-index: 8; pointer-events: none; opacity: 0;
   background: linear-gradient(90deg, transparent, #fff, transparent); box-shadow: 0 0 16px #fff; }
@@ -282,8 +282,10 @@
 .md-typeset .admonition.penalty > :not(.admonition-title):not(.sw-br):not(.sw-blk):not(.sw-scan) {
   margin-left: .9rem; margin-right: .9rem;
 }
+/* no horizontal padding: the title bar spans full width (flush to the edges,
+   aligning with the corner brackets); body text is inset via its own margin */
 .md-typeset .admonition.system, .md-typeset .admonition.profile, .md-typeset .admonition.scenario,
-.md-typeset .admonition.reward, .md-typeset .admonition.penalty { padding-bottom: .7rem; }
+.md-typeset .admonition.reward, .md-typeset .admonition.penalty { padding: 0 0 .7rem; }
 .md-typeset .admonition.system > :last-child, .md-typeset .admonition.profile > :last-child,
 .md-typeset .admonition.scenario > :last-child, .md-typeset .admonition.reward > :last-child,
 .md-typeset .admonition.penalty > :last-child { margin-bottom: 0; }
