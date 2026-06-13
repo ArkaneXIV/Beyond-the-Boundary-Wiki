@@ -275,10 +275,11 @@
   font-family: "Share Tech Mono", monospace; font-size: .72em; letter-spacing: .12em;
   color: rgba(255,255,255,.9); background: none; -webkit-mask: none; mask: none; width: auto; height: auto;
 }
-/* bright-window body content */
-.md-typeset .admonition.system > :not(.admonition-title), .md-typeset .admonition.profile > :not(.admonition-title),
-.md-typeset .admonition.scenario > :not(.admonition-title), .md-typeset .admonition.reward > :not(.admonition-title),
-.md-typeset .admonition.penalty > :not(.admonition-title) {
+/* bright-window body content (exclude the absolutely-positioned decorations,
+   else they inherit this horizontal margin and sit inset from the edges) */
+.md-typeset .admonition.system > :not(.admonition-title):not(.sw-br):not(.sw-blk):not(.sw-scan), .md-typeset .admonition.profile > :not(.admonition-title):not(.sw-br):not(.sw-blk):not(.sw-scan),
+.md-typeset .admonition.scenario > :not(.admonition-title):not(.sw-br):not(.sw-blk):not(.sw-scan), .md-typeset .admonition.reward > :not(.admonition-title):not(.sw-br):not(.sw-blk):not(.sw-scan),
+.md-typeset .admonition.penalty > :not(.admonition-title):not(.sw-br):not(.sw-blk):not(.sw-scan) {
   margin-left: .9rem; margin-right: .9rem;
 }
 .md-typeset .admonition.system, .md-typeset .admonition.profile, .md-typeset .admonition.scenario,
