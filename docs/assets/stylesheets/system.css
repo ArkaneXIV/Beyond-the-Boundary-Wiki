@@ -130,8 +130,8 @@
 .md-sidebar--primary .md-nav--primary,
 .md-sidebar--secondary .md-nav--secondary {
   position: relative; color: #fff;
-  /* flat bright azure (no dark bottom) + azure glow instead of a dark shadow */
-  background: radial-gradient(120% 70% at 50% -10%, #8fd0ff 0%, #3aa0ff 60%, #3aa0ff 100%);
+  /* flat azure — no gradient at all, so no top-to-bottom darkening on tall panels */
+  background: #3aa0ff;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), inset 0 0 0 4px rgba(255,255,255,.18), 0 0 30px rgba(58,160,255,.26);
   clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
 }
