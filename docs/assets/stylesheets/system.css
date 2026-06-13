@@ -130,8 +130,9 @@
 .md-sidebar--primary .md-nav--primary,
 .md-sidebar--secondary .md-nav--secondary {
   position: relative; color: #fff;
-  background: radial-gradient(120% 90% at 50% -6%, #8fd0ff 0%, #3aa0ff 44%, #2f7fe6 100%);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), inset 0 0 0 4px rgba(255,255,255,.18), 0 10px 32px rgba(20,80,200,.4);
+  /* flat bright azure (no dark bottom) + azure glow instead of a dark shadow */
+  background: radial-gradient(120% 70% at 50% -10%, #8fd0ff 0%, #3aa0ff 60%, #3aa0ff 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), inset 0 0 0 4px rgba(255,255,255,.18), 0 0 30px rgba(58,160,255,.26);
   clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
 }
 /* diagonal cut-corner outlines (same as content System windows) */
@@ -141,17 +142,13 @@
 }
 .md-sidebar--primary .md-nav--primary::before, .md-sidebar--secondary .md-nav--secondary::before { top: 10px; left: 10px; transform: translate(-50%,-50%) rotate(-45deg); }
 .md-sidebar--primary .md-nav--primary::after, .md-sidebar--secondary .md-nav--secondary::after { bottom: 10px; right: 10px; transform: translate(50%,50%) rotate(-45deg); }
-/* title bars (with fake window controls, like content windows) */
+/* title bars */
 .md-sidebar .md-nav__title {
-  position: relative; margin: 0; padding: .6rem 3rem .6rem .8rem; color: #fff;
+  position: relative; margin: 0; padding: .6rem .8rem; color: #fff;
   font-family: "Orbitron", sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: .72rem;
   background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
   border-bottom: 1px solid rgba(255,255,255,.6);
   text-shadow: 0 1px 6px rgba(0,40,120,.5);
-}
-.md-sidebar .md-nav__title::after {
-  content: "\2013\00a0\25a2\00a0\2715"; position: absolute; top: .6rem; right: .7rem;
-  font-family: "Share Tech Mono", monospace; font-size: .7em; letter-spacing: .12em; color: rgba(255,255,255,.9);
 }
 .md-sidebar .md-nav__list { padding: .5rem .6rem; }
 .md-sidebar .md-nav { text-shadow: 0 1px 3px rgba(0,40,120,.55); }
@@ -263,7 +260,7 @@
 .md-typeset .admonition.system > .admonition-title, .md-typeset .admonition.profile > .admonition-title,
 .md-typeset .admonition.scenario > .admonition-title, .md-typeset .admonition.reward > .admonition-title,
 .md-typeset .admonition.penalty > .admonition-title {
-  position: relative; margin: 0; padding: .55rem 3.2rem .55rem 2.4rem;
+  position: relative; margin: 0; padding: .55rem .9rem .55rem 2.4rem;
   background: linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,0));
   border-bottom: 1px solid rgba(255,255,255,.6); color: #fff;
   text-shadow: 0 1px 6px rgba(0,40,120,.5);
@@ -272,14 +269,6 @@
 .md-typeset .admonition.scenario > .admonition-title::before, .md-typeset .admonition.reward > .admonition-title::before,
 .md-typeset .admonition.penalty > .admonition-title::before {
   left: .8rem; background-color: #fff;
-}
-/* fake window controls (─ ▢ ✕) */
-.md-typeset .admonition.system > .admonition-title::after, .md-typeset .admonition.profile > .admonition-title::after,
-.md-typeset .admonition.scenario > .admonition-title::after, .md-typeset .admonition.reward > .admonition-title::after,
-.md-typeset .admonition.penalty > .admonition-title::after {
-  content: "\2013\00a0\25a2\00a0\2715"; position: absolute; top: 50%; right: .8rem; transform: translateY(-50%);
-  font-family: "Share Tech Mono", monospace; font-size: .72em; letter-spacing: .12em;
-  color: rgba(255,255,255,.9); background: none; -webkit-mask: none; mask: none; width: auto; height: auto;
 }
 /* bright-window body content (exclude the absolutely-positioned decorations,
    else they inherit this horizontal margin and sit inset from the edges) */
