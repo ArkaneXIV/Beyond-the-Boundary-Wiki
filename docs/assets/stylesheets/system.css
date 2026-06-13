@@ -224,8 +224,8 @@
 
 /* injected decorations: corner brackets + edge digitization */
 .sw-br { position: absolute; z-index: 4; width: 20px; height: 20px; border: 2px solid rgba(255,255,255,.95); pointer-events: none; }
-.sw-br.tr { top: 5px; right: 5px; border-left: 0; border-bottom: 0; }
-.sw-br.bl { bottom: 5px; left: 5px; border-right: 0; border-top: 0; }
+.sw-br.tr { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+.sw-br.bl { bottom: 0; left: 0; border-right: 0; border-top: 0; }
 /* ---- Spawn-in: block-corruption materialize (fires on page load/nav) ---- */
 .sw-scan { position: absolute; left: 0; right: 0; height: 3px; z-index: 8; pointer-events: none; opacity: 0;
   background: linear-gradient(90deg, transparent, #fff, transparent); box-shadow: 0 0 16px #fff; }
