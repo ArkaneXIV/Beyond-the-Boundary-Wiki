@@ -24,7 +24,11 @@ This spec translates that mockup into the real MkDocs Material site.
      line segments via `::before`/`::after`).
    - **Title bar** with the title and the fake `─ ▢ ✕` window controls (kept).
    - **Corner brackets** at the two square corners.
-   - **Digitization**: small glowing pixel squares marching down the side edges.
+   - **Spawn-in**: on page load/navigation each window materializes via a
+     block-corruption glitch — opacity flicker + horizontal jitter, scattered
+     data blocks that jump around, and a scan line that "draws" it — then
+     resolves clean. Multiple windows on a page cascade (staggered). (This
+     replaced the earlier static edge "digitization", which read as broken.)
    - Subtle entrance (rise/fade) + hover (lift + glow) motion.
 2. **Per-flavor colors** (same shape, different fill):
    - `system`, `profile`, `scenario` → azure
@@ -63,9 +67,10 @@ This spec translates that mockup into the real MkDocs Material site.
 - Cut corners via `clip-path` on the admonition; diagonal white outline via the
   panel's `::before`/`::after` (the title icon stays on `.admonition-title::before`,
   so no conflict).
-- **Digitization**: implement **CSS-only** (animated repeating-gradient / masked
-  edge) to avoid injecting DOM into every admonition. (Mockup used JS spans; the
-  real site uses a CSS approximation.)
+- **Spawn-in**: `nebula.js` injects a scan line + block spans into each window
+  on decoration and triggers a staggered `sw-spawn` (CSS keyframes) per page
+  render via `document$`; JS repositions the blocks randomly for ~650ms. Honors
+  reduced motion (windows simply appear).
 - Per-flavor fill colors via the existing `--flavor`/`color-mix` pattern, but with
   bright gradients and white text.
 

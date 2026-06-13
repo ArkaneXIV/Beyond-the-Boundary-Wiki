@@ -85,7 +85,28 @@
     ".md-typeset .admonition.scenario, .md-typeset .admonition.reward, " +
     ".md-typeset .admonition.penalty, .md-typeset .grid.cards > ul > li";
 
+  // Corrupted blocks jump to random spots/sizes for `dur` ms, then clear.
+  function glitchBlocks(blocks, dur) {
+    var start = performance.now();
+    var t = setInterval(function () {
+      if (performance.now() - start > dur) {
+        clearInterval(t);
+        blocks.forEach(function (b) { b.style.opacity = 0; });
+        return;
+      }
+      blocks.forEach(function (b) {
+        if (Math.random() < 0.18) { b.style.opacity = 0; return; }
+        b.style.opacity = (0.5 + Math.random() * 0.5).toFixed(2);
+        b.style.left = (Math.random() * 86).toFixed(1) + "%";
+        b.style.top = (Math.random() * 76).toFixed(1) + "%";
+        b.style.width = (8 + Math.random() * 100).toFixed(0) + "px";
+        b.style.height = (5 + Math.random() * 16).toFixed(0) + "px";
+      });
+    }, 65);
+  }
+
   function decorate() {
+    var idx = 0;
     document.querySelectorAll(WINDOW_SELECTOR).forEach(function (el) {
       if (el.dataset.swDecorated) return;
       el.dataset.swDecorated = "1";
@@ -95,6 +116,33 @@
         br.className = "sw-br " + pos;
         el.appendChild(br);
       });
+
+      var scan = document.createElement("span");
+      scan.className = "sw-scan";
+      el.appendChild(scan);
+
+      var blocks = [];
+      for (var i = 0; i < 8; i++) {
+        var b = document.createElement("span");
+        b.className = "sw-blk";
+        el.appendChild(b);
+        blocks.push(b);
+      }
+
+      if (reduce) return;                       // no spawn animation
+
+      el.classList.add("sw-pending");           // stay hidden until our turn
+      (function (node, blks, delay) {
+        setTimeout(function () {
+          node.classList.remove("sw-pending");
+          node.classList.add("sw-spawn");
+          node.addEventListener("animationend", function done(e) {
+            if (e.target === node) { node.classList.remove("sw-spawn"); node.removeEventListener("animationend", done); }
+          });
+          glitchBlocks(blks, 650);
+        }, delay);
+      })(el, blocks, Math.min(idx, 8) * 140);
+      idx++;
     });
   }
 
