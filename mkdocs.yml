@@ -34,6 +34,7 @@ extra_css:
   - assets/stylesheets/system.css
 
 extra_javascript:
+  - assets/javascripts/nebula.js
   - assets/javascripts/calendar.js
 
 plugins:
