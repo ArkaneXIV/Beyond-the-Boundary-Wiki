@@ -97,27 +97,66 @@
 }
 .md-typeset h1 {
   font-weight: 800;
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.25em;
   background: linear-gradient(180deg, #f3ecff, #9fb6ff);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.md-typeset h1::before { content: "< "; -webkit-text-fill-color: var(--sys-cyan); opacity: 0.7; }
-.md-typeset h1::after  { content: " >"; -webkit-text-fill-color: var(--sys-cyan); opacity: 0.7; }
+/* brackets hug the title; the (hidden) permalink is ordered after the ">" */
+.md-typeset h1::before { content: "<"; -webkit-text-fill-color: var(--sys-cyan); opacity: 0.7; }
+.md-typeset h1::after  { content: ">"; -webkit-text-fill-color: var(--sys-cyan); opacity: 0.7; order: 1; }
+.md-typeset h1 .headerlink { order: 2; }
 .md-typeset h2 { color: #e7f6ff; border-bottom: 1px solid var(--sys-line); padding-bottom: 0.25em; }
 .md-typeset h3 { color: var(--sys-cyan-bright); }
 
 .md-typeset a { text-decoration: none; border-bottom: 1px dotted var(--sys-line); transition: color .15s, text-shadow .15s, border-color .15s; }
 .md-typeset a:hover { color: var(--sys-cyan-bright); text-shadow: 0 0 8px var(--sys-glow); border-bottom-color: var(--sys-cyan); }
 
-/* ---- Header / nav ---- */
+/* ---- Top header = bright System bar ---- */
 .md-header {
-  background: linear-gradient(180deg, rgba(6,16,28,.96), rgba(4,8,14,.85));
-  border-bottom: 1px solid var(--sys-line);
-  box-shadow: 0 0 18px rgba(0,0,0,.6); backdrop-filter: blur(6px);
+  color: #fff;
+  background: radial-gradient(120% 240% at 50% -80%, #8fd0ff 0%, #3aa0ff 45%, #2f7fe6 100%);
+  border-bottom: 2px solid rgba(255,255,255,.85);
+  box-shadow: 0 4px 24px rgba(20,80,200,.5);
 }
+.md-header__title, .md-header__topic { color: #fff; text-shadow: 0 1px 8px rgba(0,40,120,.5); }
+.md-header__button { color: #fff; }
+.md-header .md-search__form { background: rgba(4,12,24,.42); border: 1px solid rgba(255,255,255,.45); border-radius: 0; }
+.md-header .md-search__input { color: #fff; }
+.md-header .md-search__input::placeholder { color: rgba(255,255,255,.7); }
+.md-header .md-search__icon { color: #fff; }
 .md-tabs { background: transparent; }
-.md-nav { text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+
+/* ---- Sidebars + TOC = framed System windows ---- */
+.md-sidebar--primary .md-nav--primary,
+.md-sidebar--secondary .md-nav--secondary {
+  position: relative;
+  background: var(--sys-panel); backdrop-filter: blur(7px);
+  border: 1px solid var(--sys-line);
+  box-shadow: inset 0 0 0 1px var(--sys-line-soft), 0 8px 30px rgba(0,0,0,.5);
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+.md-sidebar--primary .md-nav--primary::after,
+.md-sidebar--secondary .md-nav--secondary::after {
+  content: ""; position: absolute; inset: -3px; pointer-events: none;
+  border: 14px solid transparent; border-image: var(--sys-corners) 24 / 14px / 0 stretch; opacity: .85;
+}
+/* title bars */
+.md-sidebar .md-nav__title {
+  margin: 0; padding: .6rem .8rem; color: var(--sys-cyan-bright);
+  font-family: "Orbitron", sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: .72rem;
+  background: linear-gradient(180deg, rgba(67,184,255,.20), rgba(67,184,255,.04));
+  border-bottom: 1px solid var(--sys-line);
+}
+.md-sidebar .md-nav__list { padding: .5rem .6rem; }
+.md-nav { text-shadow: 0 1px 6px rgba(0,0,0,.5); }
 .md-nav__link--active, .md-nav__link:hover { color: var(--sys-cyan-bright); text-shadow: 0 0 8px var(--sys-glow); }
 .md-nav__item--active > .md-nav__link { border-left: 2px solid var(--sys-cyan); padding-left: 0.5rem; }
+
+/* Primary nav: show only the top-level category headers (hide sub-pages) */
+.md-nav--primary .md-nav__list .md-nav__list { display: none; }
+
+/* ---- Remove the prev/next footer nav ---- */
+.md-footer__inner.md-footer-nav, .md-footer-nav { display: none; }
 
 /* =====================================================================
    STANDARD ADMONITIONS / details — calm dark glass
@@ -190,8 +229,9 @@
 .sw-br.bl { bottom: 5px; left: 5px; border-right: 0; border-top: 0; }
 .sw-digi { position: absolute; z-index: 4; top: 0; bottom: 0; width: 8px; overflow: hidden; pointer-events: none; }
 .sw-digi.l { left: -4px; } .sw-digi.r { right: -4px; }
-.sw-digi i { position: absolute; left: 0; width: 8px; background: rgba(150,210,255,.9); box-shadow: 0 0 8px rgba(120,200,255,.8); animation: sw-march 3.2s linear infinite; }
-@keyframes sw-march { 0%{transform:translateY(-30px);opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{transform:translateY(380px);opacity:0} }
+.sw-digi i { position: absolute; left: 0; top: 0; width: 8px; background: rgba(150,210,255,.9); box-shadow: 0 0 8px rgba(120,200,255,.8); animation: sw-march 3.6s linear infinite; }
+/* travel is height-relative (% of the strip) so it scales to any window size */
+@keyframes sw-march { 0%{top:-15%;opacity:0} 12%{opacity:1} 88%{opacity:1} 100%{top:105%;opacity:0} }
 
 /* bright-window title bar */
 .md-typeset .admonition.system > .admonition-title, .md-typeset .admonition.profile > .admonition-title,

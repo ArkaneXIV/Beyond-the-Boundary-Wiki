@@ -20,7 +20,6 @@ theme:
     - navigation.top
     - navigation.tracking
     - navigation.indexes
-    - navigation.footer
     - search.suggest
     - search.highlight
     - search.share
