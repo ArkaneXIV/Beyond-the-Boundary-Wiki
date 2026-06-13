@@ -17,6 +17,8 @@
 
   /* Corner-bracket frame (used by the calendar), via border-image. */
   --sys-corners: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none" stroke="%2343b8ff" stroke-width="3"><path d="M3 24 V3 H24"/><path d="M72 3 H93 V24"/><path d="M93 72 V93 H72"/><path d="M24 93 H3 V72"/></svg>');
+  /* white variant for bright azure panels (sidebars / TOC) */
+  --sys-corners-w: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none" stroke="%23ffffff" stroke-width="3"><path d="M3 24 V3 H24"/><path d="M72 3 H93 V24"/><path d="M93 72 V93 H72"/><path d="M24 93 H3 V72"/></svg>');
 }
 
 [data-md-color-scheme="slate"] {
@@ -126,31 +128,32 @@
 .md-header .md-search__icon { color: #fff; }
 .md-tabs { background: transparent; }
 
-/* ---- Sidebars + TOC = framed System windows ---- */
+/* ---- Sidebars + TOC = bright azure System windows ---- */
 .md-sidebar--primary .md-nav--primary,
 .md-sidebar--secondary .md-nav--secondary {
-  position: relative;
-  background: var(--sys-panel); backdrop-filter: blur(7px);
-  border: 1px solid var(--sys-line);
-  box-shadow: inset 0 0 0 1px var(--sys-line-soft), 0 8px 30px rgba(0,0,0,.5);
-  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  position: relative; color: #fff;
+  background: radial-gradient(120% 90% at 50% -6%, #8fd0ff 0%, #3aa0ff 44%, #2f7fe6 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), inset 0 0 0 4px rgba(255,255,255,.18), 0 10px 32px rgba(20,80,200,.4);
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
 }
 .md-sidebar--primary .md-nav--primary::after,
 .md-sidebar--secondary .md-nav--secondary::after {
-  content: ""; position: absolute; inset: -3px; pointer-events: none;
-  border: 14px solid transparent; border-image: var(--sys-corners) 24 / 14px / 0 stretch; opacity: .85;
+  content: ""; position: absolute; inset: -2px; pointer-events: none;
+  border: 14px solid transparent; border-image: var(--sys-corners-w) 24 / 14px / 0 stretch; opacity: .95;
 }
 /* title bars */
 .md-sidebar .md-nav__title {
-  margin: 0; padding: .6rem .8rem; color: var(--sys-cyan-bright);
+  margin: 0; padding: .6rem .8rem; color: #fff;
   font-family: "Orbitron", sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: .72rem;
-  background: linear-gradient(180deg, rgba(67,184,255,.20), rgba(67,184,255,.04));
-  border-bottom: 1px solid var(--sys-line);
+  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+  border-bottom: 1px solid rgba(255,255,255,.6);
+  text-shadow: 0 1px 6px rgba(0,40,120,.5);
 }
 .md-sidebar .md-nav__list { padding: .5rem .6rem; }
-.md-nav { text-shadow: 0 1px 6px rgba(0,0,0,.5); }
-.md-nav__link--active, .md-nav__link:hover { color: var(--sys-cyan-bright); text-shadow: 0 0 8px var(--sys-glow); }
-.md-nav__item--active > .md-nav__link { border-left: 2px solid var(--sys-cyan); padding-left: 0.5rem; }
+.md-sidebar .md-nav { text-shadow: 0 1px 3px rgba(0,40,120,.55); }
+.md-sidebar .md-nav__link { color: #fff; }
+.md-sidebar .md-nav__link--active, .md-sidebar .md-nav__link:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,.75); }
+.md-sidebar .md-nav__item--active > .md-nav__link { border-left: 2px solid #fff; padding-left: 0.5rem; }
 
 /* Primary nav: show only the top-level category headers (hide sub-pages) */
 .md-nav--primary .md-nav__list .md-nav__list { display: none; }
