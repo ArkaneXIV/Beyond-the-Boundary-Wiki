@@ -232,12 +232,14 @@
    wide panels get a dense top/bottom run and tall panels dense sides. */
 .sw-digi { position: absolute; z-index: 4; overflow: hidden; pointer-events: none; }
 .sw-digi i { position: absolute; background: rgba(190,230,255,.95); box-shadow: 0 0 8px rgba(120,200,255,.85); }
+/* Strips are inset 22px from each corner so the corner brackets / cut-corner
+   outlines own the corners and the bars never collide or gap at them. */
 /* vertical edges */
-.sw-digi.l, .sw-digi.r { top: 0; bottom: 0; width: 6px; }
+.sw-digi.l, .sw-digi.r { top: 22px; bottom: 22px; width: 6px; }
 .sw-digi.l { left: 1px; } .sw-digi.r { right: 1px; }
 .sw-digi.l i, .sw-digi.r i { left: 0; width: 6px; animation: sw-march-v 3.6s linear infinite; }
 /* horizontal edges */
-.sw-digi.t, .sw-digi.b { left: 0; right: 0; height: 6px; }
+.sw-digi.t, .sw-digi.b { left: 22px; right: 22px; height: 6px; }
 .sw-digi.t { top: 1px; } .sw-digi.b { bottom: 1px; }
 .sw-digi.t i, .sw-digi.b i { top: 0; height: 6px; animation: sw-march-h 3.6s linear infinite; }
 @keyframes sw-march-v { 0%{top:-12%;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{top:104%;opacity:0} }
