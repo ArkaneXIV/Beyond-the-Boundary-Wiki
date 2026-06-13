@@ -83,7 +83,8 @@
   var WINDOW_SELECTOR =
     ".md-typeset .admonition.system, .md-typeset .admonition.profile, " +
     ".md-typeset .admonition.scenario, .md-typeset .admonition.reward, " +
-    ".md-typeset .admonition.penalty, .md-typeset .grid.cards > ul > li";
+    ".md-typeset .admonition.penalty, .md-typeset .grid.cards > ul > li, " +
+    ".md-sidebar--primary .md-nav--primary, .md-sidebar--secondary .md-nav--secondary";
 
   // Corrupted blocks jump to random spots/sizes for `dur` ms, then clear.
   function glitchBlocks(blocks, dur) {

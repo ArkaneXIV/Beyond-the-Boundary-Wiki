@@ -17,8 +17,6 @@
 
   /* Corner-bracket frame (used by the calendar), via border-image. */
   --sys-corners: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none" stroke="%2343b8ff" stroke-width="3"><path d="M3 24 V3 H24"/><path d="M72 3 H93 V24"/><path d="M93 72 V93 H72"/><path d="M24 93 H3 V72"/></svg>');
-  /* white variant for bright azure panels (sidebars / TOC) */
-  --sys-corners-w: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none" stroke="%23ffffff" stroke-width="3"><path d="M3 24 V3 H24"/><path d="M72 3 H93 V24"/><path d="M93 72 V93 H72"/><path d="M24 93 H3 V72"/></svg>');
 }
 
 [data-md-color-scheme="slate"] {
@@ -134,20 +132,26 @@
   position: relative; color: #fff;
   background: radial-gradient(120% 90% at 50% -6%, #8fd0ff 0%, #3aa0ff 44%, #2f7fe6 100%);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), inset 0 0 0 4px rgba(255,255,255,.18), 0 10px 32px rgba(20,80,200,.4);
-  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
 }
-.md-sidebar--primary .md-nav--primary::after,
-.md-sidebar--secondary .md-nav--secondary::after {
-  content: ""; position: absolute; inset: -2px; pointer-events: none;
-  border: 14px solid transparent; border-image: var(--sys-corners-w) 24 / 14px / 0 stretch; opacity: .95;
+/* diagonal cut-corner outlines (same as content System windows) */
+.md-sidebar--primary .md-nav--primary::before, .md-sidebar--secondary .md-nav--secondary::before,
+.md-sidebar--primary .md-nav--primary::after, .md-sidebar--secondary .md-nav--secondary::after {
+  content: ""; position: absolute; z-index: 3; width: 27px; height: 0; border-top: 1.5px solid rgba(255,255,255,.95); pointer-events: none;
 }
-/* title bars */
+.md-sidebar--primary .md-nav--primary::before, .md-sidebar--secondary .md-nav--secondary::before { top: 10px; left: 10px; transform: translate(-50%,-50%) rotate(-45deg); }
+.md-sidebar--primary .md-nav--primary::after, .md-sidebar--secondary .md-nav--secondary::after { bottom: 10px; right: 10px; transform: translate(50%,50%) rotate(-45deg); }
+/* title bars (with fake window controls, like content windows) */
 .md-sidebar .md-nav__title {
-  margin: 0; padding: .6rem .8rem; color: #fff;
+  position: relative; margin: 0; padding: .6rem 3rem .6rem .8rem; color: #fff;
   font-family: "Orbitron", sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: .72rem;
   background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
   border-bottom: 1px solid rgba(255,255,255,.6);
   text-shadow: 0 1px 6px rgba(0,40,120,.5);
+}
+.md-sidebar .md-nav__title::after {
+  content: "\2013\00a0\25a2\00a0\2715"; position: absolute; top: .6rem; right: .7rem;
+  font-family: "Share Tech Mono", monospace; font-size: .7em; letter-spacing: .12em; color: rgba(255,255,255,.9);
 }
 .md-sidebar .md-nav__list { padding: .5rem .6rem; }
 .md-sidebar .md-nav { text-shadow: 0 1px 3px rgba(0,40,120,.55); }
