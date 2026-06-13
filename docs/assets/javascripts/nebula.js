@@ -95,25 +95,6 @@
         br.className = "sw-br " + pos;
         el.appendChild(br);
       });
-
-      var w = el.offsetWidth || 300, h = el.offsetHeight || 120;
-      // strips are inset 22px each end (see CSS); scale count to usable length
-      var usableW = Math.max(40, w - 44), usableH = Math.max(40, h - 44);
-      ["l", "r", "t", "b"].forEach(function (side) {
-        var digi = document.createElement("span");
-        digi.className = "sw-digi " + side;
-        if (!reduce) {
-          var horiz = side === "t" || side === "b";
-          var count = horiz ? Math.max(4, Math.round(usableW / 90)) : Math.max(2, Math.round(usableH / 70));
-          for (var i = 0; i < count; i++) {
-            var bar = document.createElement("i");
-            bar.style[horiz ? "width" : "height"] = (8 + Math.random() * 16) + "px";
-            bar.style.animationDelay = (-Math.random() * 3.6) + "s";
-            digi.appendChild(bar);
-          }
-        }
-        el.appendChild(digi);
-      });
     });
   }
 
