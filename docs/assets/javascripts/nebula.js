@@ -97,13 +97,14 @@
       });
 
       var w = el.offsetWidth || 300, h = el.offsetHeight || 120;
+      // strips are inset 22px each end (see CSS); scale count to usable length
+      var usableW = Math.max(40, w - 44), usableH = Math.max(40, h - 44);
       ["l", "r", "t", "b"].forEach(function (side) {
         var digi = document.createElement("span");
         digi.className = "sw-digi " + side;
         if (!reduce) {
           var horiz = side === "t" || side === "b";
-          // bar count scales with the edge's length, so no edge looks bare
-          var count = horiz ? Math.max(6, Math.round(w / 90)) : Math.max(3, Math.round(h / 70));
+          var count = horiz ? Math.max(4, Math.round(usableW / 90)) : Math.max(2, Math.round(usableH / 70));
           for (var i = 0; i < count; i++) {
             var bar = document.createElement("i");
             bar.style[horiz ? "width" : "height"] = (8 + Math.random() * 16) + "px";
