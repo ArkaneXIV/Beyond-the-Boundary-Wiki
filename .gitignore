@@ -6,6 +6,9 @@ __pycache__/
 # MkDocs build output
 /site/
 
+# Brainstorming visual companion
+.superpowers/
+
 # Editor / OS
 .vscode/
 .idea/
