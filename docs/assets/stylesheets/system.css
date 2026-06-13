@@ -227,15 +227,12 @@
 .sw-br { position: absolute; z-index: 4; width: 20px; height: 20px; border: 2px solid rgba(255,255,255,.95); pointer-events: none; }
 .sw-br.tr { top: 5px; right: 5px; border-left: 0; border-bottom: 0; }
 .sw-br.bl { bottom: 5px; left: 5px; border-right: 0; border-top: 0; }
-/* Edge digitization: a dense flowing pixel column — reads cleanly at any size. */
-.sw-digi {
-  position: absolute; z-index: 4; top: 0; bottom: 0; width: 4px; overflow: hidden; pointer-events: none;
-  background-image: repeating-linear-gradient(180deg, rgba(230,245,255,.92) 0 5px, transparent 5px 12px);
-  box-shadow: 0 0 8px rgba(120,200,255,.55);
-  animation: sw-stream 2.4s linear infinite;
-}
-.sw-digi.l { left: 0; } .sw-digi.r { right: 0; }
-@keyframes sw-stream { from { background-position-y: 0; } to { background-position-y: 12px; } }
+/* Edge digitization: sparse glitchy marching bars, fully inside the edge
+   (no clipping) and height-relative so they span any window size. */
+.sw-digi { position: absolute; z-index: 4; top: 0; bottom: 0; width: 6px; overflow: hidden; pointer-events: none; }
+.sw-digi.l { left: 1px; } .sw-digi.r { right: 1px; }
+.sw-digi i { position: absolute; left: 0; width: 6px; background: rgba(190,230,255,.95); box-shadow: 0 0 8px rgba(120,200,255,.85); animation: sw-march 3.6s linear infinite; }
+@keyframes sw-march { 0%{top:-12%;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{top:104%;opacity:0} }
 
 /* bright-window title bar */
 .md-typeset .admonition.system > .admonition-title, .md-typeset .admonition.profile > .admonition-title,
@@ -370,7 +367,7 @@
    Reduced motion
    ===================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .neb .blob, .neb .smoke, .sw-digi,
+  .neb .blob, .neb .smoke, .sw-digi i,
   .md-typeset .admonition.system, .md-typeset .admonition.profile, .md-typeset .admonition.scenario,
   .md-typeset .admonition.reward, .md-typeset .admonition.penalty, .md-typeset .grid.cards > ul > li {
     animation: none !important;

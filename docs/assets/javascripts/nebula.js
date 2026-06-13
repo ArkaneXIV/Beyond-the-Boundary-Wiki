@@ -99,6 +99,14 @@
       ["l", "r"].forEach(function (side) {
         var digi = document.createElement("span");
         digi.className = "sw-digi " + side;
+        if (!reduce) {
+          for (var i = 0; i < 7; i++) {
+            var bar = document.createElement("i");
+            bar.style.height = (8 + Math.random() * 16) + "px";
+            bar.style.animationDelay = (-Math.random() * 3.6) + "s";
+            digi.appendChild(bar);
+          }
+        }
         el.appendChild(digi);
       });
     });
